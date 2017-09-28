@@ -5,7 +5,6 @@ class CreateLocations < ActiveRecord::Migration[5.1]
       t.string :start_date
       t.string :end_date
       t.string :coordinates
-      t.integer :trip_location_id
 
       t.timestamps
     end
