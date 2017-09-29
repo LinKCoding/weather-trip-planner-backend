@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :new, :index]
       post '/login', to: 'users#login'
       resources :user_trips, only: [:create, :new, :index]
+      get '/tripwithuser/:id', to: 'user_trips#withuserid', as: 'withuserid'
     end
   end
 
