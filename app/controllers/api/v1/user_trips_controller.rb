@@ -12,5 +12,8 @@ class Api::V1::UserTripsController < ApplicationController
     end
   end
 
+  def newlocation
+    byebug
+  end
 
 end
