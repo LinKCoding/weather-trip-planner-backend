@@ -10,4 +10,6 @@ class UserTripSerializer < ActiveModel::Serializer
       all_locations.join(" -- ")
     end
   end
+
+
 end

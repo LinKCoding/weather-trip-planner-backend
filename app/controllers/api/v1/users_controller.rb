@@ -14,8 +14,10 @@ class Api::V1::UsersController < ApplicationController
 
   def login
     @user = User.find_by(username: params[:username])
-    if @user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       render json: @user
+    else
+      render json: {status: "error", code: 401}
     end
   end
 
