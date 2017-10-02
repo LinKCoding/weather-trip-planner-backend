@@ -7,7 +7,11 @@ class Api::V1::UserTripsController < ApplicationController
 
   def create
     @trip = UserTrip.new(name: params[:name], user_id: params[:user_id])
-    if @trip.save
+    @new_location = Location.new(name: params[:newLocation])
+    @new_location.start_date = params[:newTripStart].to_date
+    @new_location.end_date = params[:newTripEnd].to_date
+    @trip.locations << @new_location
+    if @trip.save && @new_location.save
       render json: @trip
     end
   end
