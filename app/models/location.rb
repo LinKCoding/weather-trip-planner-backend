@@ -14,9 +14,7 @@ class Location < ApplicationRecord
     arr = resp["forecast"]["forecastday"].map do |kennyday|
       kennyday["day"]
     end
-
     # resp["forecast"]["forecastday"][0]["day"]["condition"]["icon"]
-    byebug
   end
 
 end

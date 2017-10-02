@@ -20,4 +20,12 @@ class Api::V1::UserTripsController < ApplicationController
     byebug
   end
 
+  def forecast
+    @trip = UserTrip.find_by(id: params[:trip_id])
+    @forecastmap = @trip.locations.map do |location|
+      location.forecast
+    end
+    render json: @forecastmap
+  end
+
 end
