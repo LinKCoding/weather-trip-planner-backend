@@ -28,15 +28,16 @@ class Api::V1::UserTripsController < ApplicationController
     render json: @forecastmap
   end
 
+  def edit
+    byebug
+  end
+
   def destroy
     @trip = UserTrip.find_by(id: params[:id])
     if @trip
-
       @trip.locations.each{|location| location.destroy }
       @trip.destroy
       render json: { status: "successful"}
-    # else
-    #   render json: { }
     end
   end
 
