@@ -16,8 +16,12 @@ class Api::V1::UserTripsController < ApplicationController
     end
   end
 
-  def newlocation
-    byebug
+  def newlocation(new_location_info)
+    new_location = Location.new({name: new_location_info[0], start_date: new_location_info[1], end_date: new_location_info[2]})
+
+    if new_location.save
+      @trip.locations << new_location
+    end
   end
 
   def forecast
@@ -32,11 +36,14 @@ class Api::V1::UserTripsController < ApplicationController
     @trip = UserTrip.find_by(id: params[:id])
     counter = 0
     @trip.locations.each do |location|
-      byebug
       location.update({name: params[:locations][counter].split("||")[0], start_date: params[:locations][counter].split("||")[1], end_date: params[:locations][counter].split("||")[2]})
-      counter++
+      counter += 1
     end
-    render json: {status: "successful"}
+
+    new_location_info = params[:newlocation].split("||")
+    newlocation(new_location_info)
+
+    render json: @trip
   end
 
   def destroy

@@ -3,6 +3,8 @@ class Location < ApplicationRecord
   has_many :trip_locations
   has_many :user_trips, through: :trip_locations
 
+  validates :name, :start_date, :end_date, presence: true
+
 
 
   def forecast
