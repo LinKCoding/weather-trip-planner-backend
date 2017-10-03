@@ -28,8 +28,15 @@ class Api::V1::UserTripsController < ApplicationController
     render json: @forecastmap
   end
 
-  def edit
-    byebug
+  def update
+    @trip = UserTrip.find_by(id: params[:id])
+    counter = 0
+    @trip.locations.each do |location|
+      byebug
+      location.update({name: params[:locations][counter].split("||")[0], start_date: params[:locations][counter].split("||")[1], end_date: params[:locations][counter].split("||")[2]})
+      counter++
+    end
+    render json: {status: "successful"}
   end
 
   def destroy

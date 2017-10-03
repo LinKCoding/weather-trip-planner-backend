@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create, :new, :index]
       post '/login', to: 'users#login'
-      resources :user_trips, only: [:create, :new, :index, :destroy, :edit]
+      resources :user_trips, only: [:create, :new, :index, :destroy, :update]
       post '/forecast', to: 'user_trips#forecast', as: 'forecast'
       get '/tripwithuser/:id', to: 'user_trips#withuserid', as: 'withuserid'
 
