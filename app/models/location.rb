@@ -14,9 +14,9 @@ class Location < ApplicationRecord
     )
     resp = JSON.parse(response)
     arr = resp["forecast"]["forecastday"].map do |kennyday|
-      kennyday["day"]
+        kennyday["day"]["date"] = kennyday["date"]
+        kennyday["day"]
     end
-    # resp["forecast"]["forecastday"][0]["day"]["condition"]["icon"]
   end
 
 end
